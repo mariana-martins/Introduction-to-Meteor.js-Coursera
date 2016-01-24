@@ -1,0 +1,88 @@
+/* CSS declarations go here */
+.hidden_div{
+	display:none;
+}
+
+.jumbotron{
+	margin: 60px;
+	text-align: center;
+}
+
+.jumbotron>h1:hover{
+	color: #47AAFF;
+}
+
+.navbar-default .navbar-brand{
+	color: #24557F;
+	font-size: 2em;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+	color: #47AAFF;
+}
+
+.add-btn{
+	margin-bottom: 30px;
+}
+
+#website_form{
+	margin-bottom: 30px;
+}
+
+.website-item{
+	margin: 7px;
+	padding: 20px;
+	max-height: 500px;
+	min-height: 500px;
+	text-align: center;
+}
+
+.website-item:hover{
+	background-color: whitesmoke;
+}
+
+.site-url{
+	font-size: 1.5em;
+}
+
+.site-info{
+	font-size: 1.2em;
+}
+
+ul{
+	list-style-type:none;
+}
+
+.btn-details{
+	margin: 15px;
+}
+
+#site-description{
+	margin-top: 15px;
+}
+
+.details{
+	font-size: 2em;
+	text-align: center;
+}
+
+.form-horizontal>fieldset>legend{
+	font-size: 2.5em;
+}
+
+#last-comment{
+	font-size: 2.5em;
+}
+
+
+.form-comment{
+	margin:20px;
+}
+
+.comment-list{
+	margin-top:30px;
+}
+
+.form-search{
+	margin-bottom: 15px;
+}

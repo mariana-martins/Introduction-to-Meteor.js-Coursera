@@ -1,0 +1,162 @@
+<head>
+  <title>Siteace</title>
+</head>
+
+<body>
+</body>
+
+<template name="ApplicationLayout">
+    {{>yield "navbar"}}
+    {{>yield "main"}}
+</template>
+
+<template name="detailpage">
+    <div class="container details">
+        <div class="row">
+            <a href="{{url}}">{{title}}</a>
+            <p>
+                {{description}}
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row"></div>
+        <form class="form-horizontal">
+            {{#if currentUser}}
+            <fieldset>
+                <legend>New Comment</legend>
+                <div class="row">
+                    <div class="col-sm-9 form-comment">
+                        <textarea rows="2" class="form-control"></textarea>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-primary btn-lg form-comment">Publish</button>
+                    </div>
+                </div>
+            </fieldset>
+            {{else}}
+                <h3>To comment, please login!</h3>
+            {{/if}}
+        </form>
+        <div class="row">
+            <fieldset class="col-sm-12">
+                <legend id="last-comment">Last Comments</legend>
+                {{#each comments}}
+                    <blockquote class="lead">
+                        <small>{{message}}</small>
+                    </blockquote>
+                    <hr>
+                {{else}}
+                    <p class="lead text-center">No comment published.</p>
+                {{/each}}
+            </fieldset>
+        </div>
+    </div>
+</template>
+
+<template name="welcome">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome to Siteace!</h1>
+            <a href="/website_list" class="btn btn-primary">ENTER</a>
+        </div>
+    </div>
+</template>
+
+<template name="navbar">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/website_list">
+                    Site Ace
+                </a>
+            </div>
+            <div class="nav navbar-nav navbar-right">
+                {{> loginButtons}}
+            </div>
+        </div>
+    </nav>
+</template>
+
+<template name="website_form">
+    <div class="container">
+        <div class="row">
+            <div class="add-btn">
+                {{#if currentUser}}
+                <a class="btn btn-primary js-toggle-website-form" href="#">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    ADD NEW SITE
+                </a>
+                {{/if}}
+            </div>
+            <div id="website_form" class="hidden_div">
+                <form class="js-save-website-form">
+                  <div class="form-group">
+                    <label for="url">Site address</label>
+                    <input type="text" class="form-control" id="url" placeholder="http://www.mysite.com">
+                  </div>
+                  <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" placeholder="Mysite">
+                  </div>
+                    <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" placeholder="I found this site really useful for ...">
+                  </div>
+
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- template that displays several website items -->
+<template name="website_list">
+    <div class="container">
+        <div class="row">
+            <form class="form-search" role="search">
+                <div class="input-group">
+                    <input class="form-control js-search" type="text" placeholder="Do the search" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-success js-btn-search" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            {{> website_form}}
+            <ul>
+            {{#each websites}}
+            {{>website_item}}
+            {{/each}}
+            </ul>
+        </div>
+    </div>
+</template>
+
+<!-- template that displays individual website entries -->
+<template name="website_item">
+    <div class="col-lg-4">
+        <li class="website-item thumbnail">
+            <a href="{{url}}" class="site-url">{{title}}</a>
+
+            <p class="site-info" id="site-description">
+                {{description}}
+            </p>
+
+            <p class="site-info">Date: {{createdOn}}</p>
+
+            <a href="/detailpage/{{_id}}" class="btn btn-success btn-details"><span class="glyphicon glyphicon-plus">Details</span></a>
+            <p><span class="label label-primary">Votes: {{vote}}</span></p>
+
+            <a href="#" class="btn btn-default js-upvote">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </a>
+            <a href="#" class="btn btn-default js-downvote">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+            </a>
+            <!-- you will be putting your up and down vote buttons in here! -->
+        </li>
+    </div>
+</template>
